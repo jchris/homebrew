@@ -17,8 +17,8 @@ class Erlang <Formula
   homepage 'http://www.erlang.org'
 
   def skip_clean? path
-    true if path =~ %r[#{lib}/erlang/erts-(\d+\.?)+/bin/beam(\.smp)?] # breaks crypto_drv.so loading
-    true if path =~ %r[#{lib}/erlang/lib] # crypto_drv.so etc. can't be stripped as plugins
+    return true if path =~ %r[#{lib}/erlang/erts-[^/]+/bin/beam(\.smp)?] # breaks crypto_drv.so loading
+    return true if path =~ %r[#{lib}/erlang/lib] # crypto_drv.so etc. can't be stripped as plugins
   end
 
   def patches
